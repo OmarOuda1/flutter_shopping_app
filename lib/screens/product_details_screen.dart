@@ -21,20 +21,35 @@ class ProductDetailsScreen extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: Hero(
                 tag: product.id,
-                child: Image.network(
-                  product.image,
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      color: Colors.grey[300],
-                      child: Icon(
-                        Icons.image,
-                        size: 100,
-                        color: Colors.grey[500],
+                child: product.image.startsWith('http')
+                    ? Image.network(
+                        product.image,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.grey[300],
+                            child: Icon(
+                              Icons.image,
+                              size: 100,
+                              color: Colors.grey[500],
+                            ),
+                          );
+                        },
+                      )
+                    : Image.asset(
+                        product.image,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.grey[300],
+                            child: Icon(
+                              Icons.image,
+                              size: 100,
+                              color: Colors.grey[500],
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
               ),
             ),
             SizedBox(height: 10),
