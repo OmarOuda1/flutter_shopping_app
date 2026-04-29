@@ -21,7 +21,10 @@ class ProductDetailsScreen extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: Hero(
                 tag: product.id,
-                child: Image.network(product.image, fit: BoxFit.contain),
+                child: Container(
+                  color: Colors.grey[300],
+                  child: Icon(Icons.image, size: 100, color: Colors.grey[500]),
+                ),
               ),
             ),
             SizedBox(height: 10),

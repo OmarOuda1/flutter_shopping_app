@@ -76,7 +76,7 @@ class CartScreen extends StatelessWidget {
                       padding: EdgeInsets.all(8),
                       child: ListTile(
                         leading: CircleAvatar(
-                          backgroundImage: NetworkImage(cartItem.product.image),
+                          child: Icon(Icons.image),
                         ),
                         title: Text(cartItem.product.title),
                         subtitle: Text('Total: \$${(cartItem.product.price * cartItem.quantity).toStringAsFixed(2)}'),

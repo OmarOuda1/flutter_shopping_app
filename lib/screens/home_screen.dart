@@ -96,10 +96,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: GridTile(
                     child: Hero(
                       tag: product.id,
-                      child: FadeInImage(
-                        placeholder: NetworkImage('https://via.placeholder.com/150'),
-                        image: NetworkImage(product.image),
-                        fit: BoxFit.cover,
+                      child: Container(
+                        color: Colors.grey[300],
+                        child: Icon(Icons.image, size: 50, color: Colors.grey[500]),
                       ),
                     ),
                     footer: GridTileBar(
