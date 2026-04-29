@@ -51,17 +51,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => CartScreen()),
-              );
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => CartScreen()));
             },
           ),
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => SettingsScreen()),
-              );
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => SettingsScreen()));
             },
           ),
           IconButton(
@@ -89,24 +89,35 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => ProductDetailsScreen(product: product),
+                        builder: (context) =>
+                            ProductDetailsScreen(product: product),
                       ),
                     );
                   },
                   child: GridTile(
                     child: Hero(
                       tag: product.id,
-                      child: Container(
-                        color: Colors.grey[300],
-                        child: Icon(Icons.image, size: 50, color: Colors.grey[500]),
+                      child: FadeInImage(
+                        placeholder: NetworkImage(
+                          'https://via.placeholder.com/150',
+                        ),
+                        image: NetworkImage(product.image),
+                        fit: BoxFit.cover,
+                        imageErrorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.grey[300],
+                            child: Icon(
+                              Icons.image,
+                              size: 50,
+                              color: Colors.grey[500],
+                            ),
+                          );
+                        },
                       ),
                     ),
                     footer: GridTileBar(
                       backgroundColor: Colors.black87,
-                      title: Text(
-                        product.title,
-                        textAlign: TextAlign.center,
-                      ),
+                      title: Text(product.title, textAlign: TextAlign.center),
                       subtitle: Text('\$${product.price}'),
                       trailing: IconButton(
                         icon: Icon(Icons.add_shopping_cart),

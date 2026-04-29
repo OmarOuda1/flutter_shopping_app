@@ -21,9 +21,19 @@ class ProductDetailsScreen extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: Hero(
                 tag: product.id,
-                child: Container(
-                  color: Colors.grey[300],
-                  child: Icon(Icons.image, size: 100, color: Colors.grey[500]),
+                child: Image.network(
+                  product.image,
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.grey[300],
+                      child: Icon(
+                        Icons.image,
+                        size: 100,
+                        color: Colors.grey[500],
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -45,7 +55,10 @@ class ProductDetailsScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Provider.of<CartProvider>(context, listen: false).addItem(product);
+                Provider.of<CartProvider>(
+                  context,
+                  listen: false,
+                ).addItem(product);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('Added to cart!'),
@@ -54,7 +67,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 );
               },
               child: Text('Add to Cart'),
-            )
+            ),
           ],
         ),
       ),

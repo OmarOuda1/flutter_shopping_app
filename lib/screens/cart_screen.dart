@@ -25,7 +25,9 @@ class CartScreen extends StatelessWidget {
                     label: Text(
                       '\$${cartProvider.totalAmount.toStringAsFixed(2)}',
                       style: TextStyle(
-                        color: Theme.of(context).primaryTextTheme.titleLarge?.color,
+                        color: Theme.of(
+                          context,
+                        ).primaryTextTheme.titleLarge?.color,
                       ),
                     ),
                     backgroundColor: Theme.of(context).primaryColor,
@@ -41,7 +43,7 @@ class CartScreen extends StatelessWidget {
                               ),
                             );
                           },
-                  )
+                  ),
                 ],
               ),
             ),
@@ -57,11 +59,7 @@ class CartScreen extends StatelessWidget {
                   key: ValueKey(productId),
                   background: Container(
                     color: Theme.of(context).colorScheme.error,
-                    child: Icon(
-                      Icons.delete,
-                      color: Colors.white,
-                      size: 40,
-                    ),
+                    child: Icon(Icons.delete, color: Colors.white, size: 40),
                     alignment: Alignment.centerRight,
                     padding: EdgeInsets.only(right: 20),
                     margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
@@ -76,21 +74,27 @@ class CartScreen extends StatelessWidget {
                       padding: EdgeInsets.all(8),
                       child: ListTile(
                         leading: CircleAvatar(
+                          backgroundImage: NetworkImage(cartItem.product.image),
+                          onBackgroundImageError: (exception, stackTrace) {},
                           child: Icon(Icons.image),
                         ),
                         title: Text(cartItem.product.title),
-                        subtitle: Text('Total: \$${(cartItem.product.price * cartItem.quantity).toStringAsFixed(2)}'),
+                        subtitle: Text(
+                          'Total: \$${(cartItem.product.price * cartItem.quantity).toStringAsFixed(2)}',
+                        ),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
                               icon: Icon(Icons.remove),
-                              onPressed: () => cartProvider.decreaseQuantity(productId),
+                              onPressed: () =>
+                                  cartProvider.decreaseQuantity(productId),
                             ),
                             Text('${cartItem.quantity} x'),
                             IconButton(
                               icon: Icon(Icons.add),
-                              onPressed: () => cartProvider.addItem(cartItem.product),
+                              onPressed: () =>
+                                  cartProvider.addItem(cartItem.product),
                             ),
                           ],
                         ),
@@ -100,7 +104,7 @@ class CartScreen extends StatelessWidget {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );
