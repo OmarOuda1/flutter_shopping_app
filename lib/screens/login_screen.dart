@@ -18,8 +18,10 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
 
-    final success = await Provider.of<AuthProvider>(context, listen: false)
-        .login(_emailController.text, _passwordController.text);
+    final success = await Provider.of<AuthProvider>(
+      context,
+      listen: false,
+    ).login(_emailController.text, _passwordController.text);
 
     setState(() {
       _isLoading = false;
@@ -55,15 +57,12 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(height: 32),
             _isLoading
                 ? CircularProgressIndicator()
-                : ElevatedButton(
-                    onPressed: _login,
-                    child: Text('Login'),
-                  ),
+                : ElevatedButton(onPressed: _login, child: Text('Login')),
             TextButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => SignupScreen()),
-                );
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (context) => SignupScreen()));
               },
               child: Text('Don\'t have an account? Sign up'),
             ),

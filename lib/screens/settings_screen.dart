@@ -29,30 +29,31 @@ class SettingsScreen extends StatelessWidget {
                 builder: (BuildContext context) {
                   return FutureBuilder(
                     future: rootBundle.loadString('assets/credits.md'),
-                    builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                      if (snapshot.hasData) {
-                        return AlertDialog(
-                          title: Text('Credits'),
-                          content: SingleChildScrollView(
-                            child: MarkdownBody(data: snapshot.data!),
-                          ),
-                          actions: [
-                            TextButton(
-                              child: Text('Close'),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
+                          if (snapshot.hasData) {
+                            return AlertDialog(
+                              title: Text('Credits'),
+                              content: SingleChildScrollView(
+                                child: MarkdownBody(data: snapshot.data!),
+                              ),
+                              actions: [
+                                TextButton(
+                                  child: Text('Close'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          }
+                          return AlertDialog(
+                            content: Container(
+                              height: 100,
+                              child: Center(child: CircularProgressIndicator()),
                             ),
-                          ],
-                        );
-                      }
-                      return AlertDialog(
-                        content: Container(
-                          height: 100,
-                          child: Center(child: CircularProgressIndicator()),
-                        ),
-                      );
-                    },
+                          );
+                        },
                   );
                 },
               );

@@ -32,10 +32,7 @@ class CartProvider extends ChangeNotifier {
         ),
       );
     } else {
-      _items.putIfAbsent(
-        product.id,
-        () => CartItem(product: product),
-      );
+      _items.putIfAbsent(product.id, () => CartItem(product: product));
     }
     notifyListeners();
   }

@@ -45,7 +45,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     final cartItem = cartProvider.items.values.toList()[i];
                     return ListTile(
                       title: Text(cartItem.product.title),
-                      trailing: Text('${cartItem.quantity} x \$${cartItem.product.price}'),
+                      trailing: Text(
+                        '${cartItem.quantity} x \$${cartItem.product.price}',
+                      ),
                     );
                   },
                 ),

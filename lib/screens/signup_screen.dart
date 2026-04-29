@@ -17,8 +17,10 @@ class _SignupScreenState extends State<SignupScreen> {
       _isLoading = true;
     });
 
-    final success = await Provider.of<AuthProvider>(context, listen: false)
-        .signup(_emailController.text, _passwordController.text);
+    final success = await Provider.of<AuthProvider>(
+      context,
+      listen: false,
+    ).signup(_emailController.text, _passwordController.text);
 
     setState(() {
       _isLoading = false;
@@ -56,10 +58,7 @@ class _SignupScreenState extends State<SignupScreen> {
             SizedBox(height: 32),
             _isLoading
                 ? CircularProgressIndicator()
-                : ElevatedButton(
-                    onPressed: _signup,
-                    child: Text('Sign Up'),
-                  ),
+                : ElevatedButton(onPressed: _signup, child: Text('Sign Up')),
           ],
         ),
       ),
