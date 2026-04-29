@@ -74,7 +74,11 @@ class CartScreen extends StatelessWidget {
                       padding: EdgeInsets.all(8),
                       child: ListTile(
                         leading: CircleAvatar(
-                          backgroundImage: NetworkImage(cartItem.product.image),
+                          backgroundImage:
+                              cartItem.product.image.startsWith('http')
+                              ? NetworkImage(cartItem.product.image)
+                              : AssetImage(cartItem.product.image)
+                                    as ImageProvider,
                           onBackgroundImageError: (exception, stackTrace) {},
                           child: Icon(Icons.image),
                         ),

@@ -15,9 +15,10 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final response = await http.get(
-        Uri.parse('https://fakestoreapi.com/products'),
-      );
+      final response = await http
+          .get(Uri.parse('https://fakestoreapi.com/products'))
+          .timeout(const Duration(seconds: 3));
+
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
         _products = data
